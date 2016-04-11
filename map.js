@@ -60,7 +60,7 @@ function successFunc( position )
     WatchPosition.svp.setPosition( latlng );
 
     // マーカーの場所を変更
-    WatchPosition.marker.setPosition( latlng ) ;
+    // WatchPosition.marker.setPosition( latlng ) ;
   }
 }
 
