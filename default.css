@@ -1,0 +1,48 @@
+@charset "UTF-8" ;
+
+.map-wrapper
+{
+  max-width: 100% ;
+  padding-bottom: 75% ;
+  position: relative ;
+  top: 0 ;
+  left: 0 ;
+  height: 0 ;
+  overflow: hidden ;
+}
+
+/*.map-wrapper > div
+{
+  position: absolute ;
+  top: 0 ;
+  left: 0 ;
+  width: 100% ;
+  height: 100% 
+}*/
+
+.map-wrapper div.map
+{
+  position: absolute ;
+  top: 0 ;
+  left: 0 ;
+  margin: 0px 10px;
+  float: left;
+  width: 45% ;
+  height: 90% 
+}
+
+.map-wrapper div.gsv
+{
+  position: absolute ;
+  top: 0 ;
+  left: 46% ;
+  margin: 0px 10px;
+  float: left;
+  width: 45% ;
+  height: 90% ;
+}
+
+.map-wrapper img
+{
+  max-width: none ;
+}
