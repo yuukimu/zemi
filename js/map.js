@@ -28,13 +28,13 @@ function successFunc( position )
   WatchPosition.lastTime = nowTime ;
 
   // HTMLに書き出し
-  document.getElementById( 'result' ).innerHTML = '<dt>緯度</dt><dd>' + position.coords.latitude + '</dd><dt>経度</dt><dd>' + position.coords.longitude + '</dd><dt>高度</dt><dd>' + position.coords.altitude + '</dd><dt>速度</dt><dd>' + position.coords.speed + '</dd><dt>実行回数</dt><dd>' + WatchPosition.count + '回</dd>' ;
+  // document.getElementById( 'result' ).innerHTML = '<dt>緯度</dt><dd>' + position.coords.latitude + '</dd><dt>経度</dt><dd>' + position.coords.longitude + '</dd><dt>高度</dt><dd>' + position.coords.altitude + '</dd><dt>速度</dt><dd>' + position.coords.speed + '</dd><dt>実行回数</dt><dd>' + WatchPosition.count + '回</dd>' ;
 
   // 緯度
   var lat = position.coords.latitude;
   // 経度
   var lng = position.coords.longitude;
-  draw(lat, lng)
+  draw(lat, lng);
   // 位置情報
   var latlng = new google.maps.LatLng( lat , lng ); 
   // 取得した座標をログに格納する
