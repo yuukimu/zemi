@@ -3,7 +3,7 @@
 .map-wrapper
 {
   max-width: 100% ;
-  padding-bottom: 75% ;
+  padding-bottom: 55% ;
   position: relative ;
   top: 0 ;
   left: 0 ;
@@ -19,7 +19,7 @@
   margin: 0px 10px;
   float: left;
   width: 45% ;
-  height: 90% 
+  height: 95% 
 }
 
 .map-wrapper div.gsv
@@ -30,7 +30,7 @@
   margin: 0px 10px;
   float: left;
   width: 45% ;
-  height: 90% ;
+  height: 95% ;
 }
 
 .map-wrapper img

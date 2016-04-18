@@ -13,7 +13,7 @@
 
   $sdb = mysql_select_db($db, $connect) or die("データベースの選択に失敗しました。");
 
-  $result = mysql_query('select date from history');
+  $result = mysql_query('select date from history order by date');
   mysql_close($connect) or die("MySQL切断に失敗しました。");
 ?>
 

@@ -63,3 +63,21 @@ input.submit_button {
   border: 1px solid blue;
   width: 15%;
 }
+
+div.ctrl {
+  text-align: center;
+}
+
+button.ctrl_button {
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 10px 30px;
+  background-color: #248;
+  color: #fff;
+  border-style: none;
+}
+
+button.ctrl_button:hover {
+  background-color: #24d;
+  color: #fff;
+}

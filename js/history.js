@@ -7,6 +7,13 @@ var WatchPosition = {
   marker: null ,
 } ;
 
+var line_list = new google.maps.MVCArray();
+
+var encodedPath;
+var path;
+var idx;
+var auto_id = null;
+
 function init() {
   var path = document.getElementById('path').value;
   console.log(path);
@@ -14,19 +21,16 @@ function init() {
 
 function initialize()
 {
-  // draw(lat, lng)
-  // 位置情報
-  var encodedPath = document.getElementById('path').value;
-  console.log(encodedPath);
-  var path = google.maps.geometry.encoding.decodePath(encodedPath);
-  // var latlng = new google.maps.LatLng( 34.075517, 134.558618 ); 
+  encodedPath = document.getElementById('path').value;
+  path = google.maps.geometry.encoding.decodePath(encodedPath);
+  idx = 0;
   var center = path[0];
   // Google Mapsに書き出し
-  // 地図の新規出力
   WatchPosition.map = new google.maps.Map( document.getElementById( 'map-canvas' ) , {
-    zoom: 15 ,        // ズーム値
-    center: center ,    // 中心座標 [latlng]
+    zoom: 15 ,
+    center: center ,
     streetViewControl: false,
+    scrollwheel: false,
   } ) ;
 
   review();
@@ -36,18 +40,74 @@ function initialize()
     map: WatchPosition.map ,
     position: center ,
   } ) ;
-  // else
-  // {
-  //   // 地図の中心を変更
-  //   WatchPosition.map.setCenter( latlng ) ;
-  //   WatchPosition.svp.setPosition( latlng );
+}
 
-  //   // マーカーの場所を変更
-  //   WatchPosition.marker.setPosition( latlng ) ;
-  // }
-  for (var i = 0; i < path.length-1; i++) {
-    drawHistory(path[i], path[i+1]);
+function reset() {
+  if (auto_id == null) {
+    idx = 0;
+    line_list.forEach(function(line, i){
+      line.setMap(null);
+    });
   }
+}
+
+function next() {
+  if (idx < path.length-1) {
+    drawHistory(path[idx], path[idx+1]);
+    idx++;
+    update();
+  } else {
+    alert("最後の座標です。");
+  }
+}
+
+function preview(argument) {
+  if (idx > 1) {
+    idx--;
+    update();
+  } else {
+    alert("最初の座標です。");
+  }
+}
+
+function auto_draw() {
+  drawHistory(path[idx], path[idx+1]);
+  idx++;
+}
+
+function auto() {
+  if (auto_id == null) {
+    auto_id = setInterval(function(){
+      auto_draw();
+      update();
+      if (idx >= path.length-1) {
+        clearInterval(auto_id);
+        auto_id = null;
+        alert("移動が終了しました。");
+        console.log("finish");
+      }
+    }, 700);
+  }
+}
+
+function stop_timer() {
+  clearInterval(auto_id);
+  auto_id = null;
+  console.log("timer stop.");
+}
+
+function update() {
+
+  var center = path[idx];
+  var heading = google.maps.geometry.spherical.computeHeading(path[idx-1], path[idx]);
+  var povopts = { heading: heading ,pitch:10, zoom:1 };
+  // 地図の中心を変更
+  WatchPosition.map.setCenter( center ) ;
+  WatchPosition.svp.setPosition( center );
+  WatchPosition.svp.setPov(povopts);
+
+  // マーカーの場所を変更
+  WatchPosition.marker.setPosition( center ) ;
 }
 
 function review() {
@@ -75,7 +135,8 @@ function drawHistory(p1, p2) {
   points.push(p2);
 
   polyLineOptions.path = points; 
-  var poly = new google.maps.Polyline(polyLineOptions); 
+  var poly = new google.maps.Polyline(polyLineOptions);
+  line_list.push(poly);
   poly.setMap(WatchPosition.map);
 }
 

@@ -28,7 +28,7 @@
   <script  src="./js/history.js"></script>
   <link rel="stylesheet" type="text/css" href="./css/map.css">
   <link rel="stylesheet" type="text/css" href="./css/default.css">
-  <title><?php echo $path ?></title>
+  <title>開発ゼミ</title>
 </head>
 <body>
   <input type="hidden" id="path" value="<?php echo $path ?>"></input>
@@ -43,7 +43,13 @@
     <div id="map-canvas" class="map"></div>
     <div id="gsv-canvas" class="gsv"></div>
   </div>
-  <button class="button1" type="submit">Button</button>
+  <div class="ctrl">
+    <button type="button" class="ctrl_button" onClick="reset()">Reset</button>
+    <button type="button" class="ctrl_button" onClick="preview()">Prev</button>
+    <button type="button" class="ctrl_button" onClick="next()">Next</button>
+    <button type="button" class="ctrl_button" onClick="auto()">Auto</button>
+    <button type="button" class="ctrl_button" onClick="stop_timer()">Stop</button>
+  </div>
   <HR style="margin: 3em 0 ;">
 </body>
 </html>
