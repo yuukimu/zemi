@@ -48,7 +48,7 @@
     <button type="button" class="ctrl_button" onClick="preview()">Prev</button>
     <button type="button" class="ctrl_button" onClick="next()">Next</button>
     <button type="button" class="ctrl_button" onClick="auto()">Auto</button>
-    <button type="button" class="ctrl_button" onClick="stop_timer()">Stop</button>
+    <button type="button" class="stop_button" onClick="stop_timer()">Stop</button>
   </div>
   <HR style="margin: 3em 0 ;">
 </body>

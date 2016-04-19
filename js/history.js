@@ -43,11 +43,16 @@ function initialize()
 }
 
 function reset() {
-  if (auto_id == null) {
+  if (confirm("リセットしますか？")) {
     idx = 0;
+    clearInterval(auto_id);
+    auto_id = null;
     line_list.forEach(function(line, i){
       line.setMap(null);
     });
+    WatchPosition.map.setCenter( path[idx] );
+    WatchPosition.svp.setPosition( path[idx] );
+    WatchPosition.marker.setPosition( path[idx] );
   }
 }
 
@@ -102,12 +107,12 @@ function update() {
   var heading = google.maps.geometry.spherical.computeHeading(path[idx-1], path[idx]);
   var povopts = { heading: heading ,pitch:10, zoom:1 };
   // 地図の中心を変更
-  WatchPosition.map.setCenter( center ) ;
+  WatchPosition.map.setCenter( center );
   WatchPosition.svp.setPosition( center );
   WatchPosition.svp.setPov(povopts);
 
   // マーカーの場所を変更
-  WatchPosition.marker.setPosition( center ) ;
+  WatchPosition.marker.setPosition( center );
 }
 
 function review() {

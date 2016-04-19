@@ -23,8 +23,10 @@
     <div id="map-canvas" class="map"></div>
     <div id="gsv-canvas" class="gsv"></div>
   </div>
-  <input type="button" value="記録終了" 
-  onClick="postForm('./post.php')"></input>
+  <div class="ctrl">
+    <button type="button" class="start" onClick="startRecord()">記録開始</button>
+    <button type="button" class="exit" onClick="stopRecord()">記録終了</button>
+  </div>
   <HR style="margin: 3em 0 ;">
 </body>
 </html>

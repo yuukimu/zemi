@@ -7,6 +7,8 @@ var WatchPosition = {
   marker: null ,
 } ;
 
+var startId = false;
+
 // 座標のログを格納
 var history = [];
 
@@ -27,19 +29,17 @@ function successFunc( position )
   // 前回の時間を更新
   WatchPosition.lastTime = nowTime ;
 
-  // HTMLに書き出し
-  // document.getElementById( 'result' ).innerHTML = '<dt>緯度</dt><dd>' + position.coords.latitude + '</dd><dt>経度</dt><dd>' + position.coords.longitude + '</dd><dt>高度</dt><dd>' + position.coords.altitude + '</dd><dt>速度</dt><dd>' + position.coords.speed + '</dd><dt>実行回数</dt><dd>' + WatchPosition.count + '回</dd>' ;
-
   // 緯度
   var lat = position.coords.latitude;
   // 経度
   var lng = position.coords.longitude;
-  draw(lat, lng);
   // 位置情報
-  var latlng = new google.maps.LatLng( lat , lng ); 
-  // 取得した座標をログに格納する
-  history.push(latlng);
-  console.log(history.length);  
+  var latlng = new google.maps.LatLng( lat , lng );
+  if (startId) {
+    draw(lat, lng);
+    history.push(latlng);
+    console.log(history.length);
+  } 
   // Google Mapsに書き出し
   if( WatchPosition.map == null )
   {
@@ -48,7 +48,8 @@ function successFunc( position )
       zoom: 15 ,        // ズーム値
       center: latlng ,    // 中心座標 [latlng]
       streetViewControl: false,
-    } ) ;
+      scrollwheel: false,
+    } );
 
     review();
 
@@ -101,6 +102,21 @@ function review() {
       position : WatchPosition.map.getCenter()
     });
   WatchPosition.map.setStreetView(WatchPosition.svp);
+}
+
+function startRecord() {
+  if (!startId) {
+    startId = true;
+    console.log(startId);
+  }
+}
+
+function stopRecord() {
+  if (startId) {
+    postForm('./post.php');
+  } else {
+    console.log("not started!");
+  }
 }
 
 // 現在位置を取得する

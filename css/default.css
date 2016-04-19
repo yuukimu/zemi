@@ -68,6 +68,22 @@ div.ctrl {
   text-align: center;
 }
 
+button.start {
+  background-color: #248;
+  font-size: 1.4em;
+  color: white;
+  border: 1px solid blue;
+  width: 30%;
+}
+
+button.exit {
+  background-color: #fd5858;
+  font-size: 1.4em;
+  color: white;
+  border: 1px solid #f01d40;
+  width: 30%;
+}
+
 button.ctrl_button {
   font-size: 1.4em;
   font-weight: bold;
@@ -79,5 +95,19 @@ button.ctrl_button {
 
 button.ctrl_button:hover {
   background-color: #24d;
+  color: #fff;
+}
+
+button.stop_button {
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 10px 30px;
+  background-color: #fb4f6b;
+  color: #fff;
+  border-style: none;
+}
+
+button.stop_button:hover {
+  background-color: #f01d40;
   color: #fff;
 }
