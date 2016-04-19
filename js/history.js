@@ -91,7 +91,7 @@ function auto() {
         alert("移動が終了しました。");
         console.log("finish");
       }
-    }, 700);
+    }, 800);
   }
 }
 

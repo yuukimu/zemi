@@ -21,7 +21,7 @@ function successFunc( position )
 
   // 前回の書き出しから3秒以上経過していたら描写
   // 毎回HTMLに書き出していると、ブラウザがフリーズするため
-  if( (WatchPosition.lastTime + 3) > nowTime )
+  if( (WatchPosition.lastTime + 10) > nowTime )
   {
     return false ;
   }
