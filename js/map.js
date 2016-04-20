@@ -19,9 +19,9 @@ function successFunc( position )
   ++WatchPosition.count ;         // 処理回数
   var nowTime = ~~( new Date() / 1000 ) ; // UNIX Timestamp
 
-  // 前回の書き出しから3秒以上経過していたら描写
+  // 前回の書き出しから6秒以上経過していたら描写
   // 毎回HTMLに書き出していると、ブラウザがフリーズするため
-  if( (WatchPosition.lastTime + 10) > nowTime )
+  if( (WatchPosition.lastTime + 6) > nowTime )
   {
     return false ;
   }
@@ -36,6 +36,11 @@ function successFunc( position )
   // 位置情報
   var latlng = new google.maps.LatLng( lat , lng );
   if (startId) {
+    // 信号待ちでの取得停止
+    // var distance = google.maps.geometry.spherical.computeDistanceBetween(history[history.length-1], latlng);
+    // if (distance < ) {
+    //   expression
+    // }
     draw(lat, lng);
     history.push(latlng);
     console.log(history.length);
@@ -107,6 +112,7 @@ function review() {
 function startRecord() {
   if (!startId) {
     startId = true;
+    document.getElementById("status").innerText = "記録中";
     console.log(startId);
   }
 }
