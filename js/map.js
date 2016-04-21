@@ -19,9 +19,9 @@ function successFunc( position )
   ++WatchPosition.count ;         // 処理回数
   var nowTime = ~~( new Date() / 1000 ) ; // UNIX Timestamp
 
-  // 前回の書き出しから6秒以上経過していたら描写
+  // 前回の書き出しから8秒以上経過していたら描写
   // 毎回HTMLに書き出していると、ブラウザがフリーズするため
-  if( (WatchPosition.lastTime + 6) > nowTime )
+  if( (WatchPosition.lastTime + 8) > nowTime )
   {
     return false ;
   }

@@ -40,8 +40,8 @@ function initialize()
 
   // マーカーの新規出力
   WatchPosition.marker = new google.maps.Marker( {
-    map: WatchPosition.map ,
-    position: center ,
+    map: WatchPosition.map,
+    position: center,
   } ) ;
 }
 
@@ -101,7 +101,7 @@ function stop_timer() {
 }
 
 function update() {
-  var center = path[idx];
+  var center = path[idx+1];
   var heading = google.maps.geometry.spherical.computeHeading(path[idx], path[idx+1]);
   heading = Math.round(heading / 10) * 10;
   // if (oldHeading == null) {
@@ -178,7 +178,7 @@ function drawHistory(p1, p2) {
     strokeWeight: 8, 
     strokeColor: "#0000ff", 
     strokeOpacity: "0.5" 
-  }; 
+  };
   var points = [];
   points.push(p1);
   points.push(p2);
