@@ -38,6 +38,11 @@
   max-width: none ;
 }
 
+label#status, label#tdist {
+  margin-right: 20px;
+  font-size: 1.4em;
+}
+
 input[type="button"] {
   background-color: #fd5858;
   font-size: 1.4em;

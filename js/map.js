@@ -8,9 +8,12 @@ var WatchPosition = {
 } ;
 
 var startId = false;
+var old;
 
 // 座標のログを格納
 var history = [];
+// 移動距離
+var tdistance = 0;
 
 // 成功した時の関数
 function successFunc( position )
@@ -47,8 +50,14 @@ function successFunc( position )
     /********************/
     draw(lat, lng);
     history.push(latlng);
+    // 前回の計測地点との距離を求める(km)
+    var dist = google.maps.geometry.spherical.computeDistanceBetween(old, latlng);
+    tdistance += Math.round(dist) / 1000;
+    document.getElementById("tdist").innerText = tdistance + "km";
+
     console.log(history.length);
-  } 
+  }
+  old = latlng;
   // Google Mapsに書き出し
   if( WatchPosition.map == null )
   {

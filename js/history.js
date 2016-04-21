@@ -33,7 +33,7 @@ function initialize()
     zoom: 15 ,
     center: center ,
     streetViewControl: false,
-    scrollwheel: false,
+    scrollwheel: true,
   } ) ;
 
   review();
@@ -43,6 +43,7 @@ function initialize()
     map: WatchPosition.map,
     position: center,
   } ) ;
+  console.log(google.maps.geometry.spherical.computeLength(path));
 }
 
 function reset() {
@@ -125,9 +126,9 @@ function update() {
   console.log(heading);
   var distance = google.maps.geometry.spherical.computeDistanceBetween(path[idx], path[idx+1]);
   console.log("distance = " + distance);
-  if (distance > 20) {
-    return false;
-  }
+  // if (distance > 20) {
+  //   return false;
+  // }
   // 地図の中心を変更
   WatchPosition.map.setCenter( center );
   WatchPosition.svp.setPosition( center );
