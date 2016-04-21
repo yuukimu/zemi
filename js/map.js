@@ -37,10 +37,14 @@ function successFunc( position )
   var latlng = new google.maps.LatLng( lat , lng );
   if (startId) {
     // 信号待ちでの取得停止
-    // var distance = google.maps.geometry.spherical.computeDistanceBetween(history[history.length-1], latlng);
-    // if (distance < ) {
-    //   expression
+    // if (WatchPosition.count > 0){
+    //   var distance = google.maps.geometry.spherical.computeDistanceBetween(history[history.length-1], latlng); 
+    //   if (distance < 3.0) {
+    //     console.log("less than 3m");
+    //     return false; 
+    //   }
     // }
+    /********************/
     draw(lat, lng);
     history.push(latlng);
     console.log(history.length);

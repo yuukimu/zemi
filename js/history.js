@@ -146,7 +146,29 @@ function review() {
       scrollwheel:false,
       position : WatchPosition.map.getCenter()
     });
-  WatchPosition.map.setStreetView(WatchPosition.svp);
+    WatchPosition.map.setStreetView(WatchPosition.svp);
+
+  /*******インドアビュー無効テスト********/
+  // var viewS = new google.maps.StreetViewService;
+  // viewS.getPanorama(
+  //   {
+  //     location: WatchPosition.map.getCenter(),
+  //     preference: google.maps.StreetViewPreference.NEAREST,
+  //     source: google.maps.StreetViewSource.OUTDOOR
+  //   },
+  //   function(data, status){
+  //   if(status=="OK"){
+  //     WatchPosition.svp = new google.maps.StreetViewPanorama(
+  //     document.getElementById("gsv-canvas"),{
+  //       addressControlOptions:"BOTTOM_RIGHT",
+  //       clickToGo:false,
+  //       linksControl:false,
+  //       scrollwheel:false,
+  //       position : data.location.latLng
+  //     });
+  //     WatchPosition.map.setStreetView(WatchPosition.svp);
+  //   }
+  // });
 }
 
 function drawHistory(p1, p2) {
