@@ -39,21 +39,22 @@ function successFunc( position )
   // 位置情報
   var latlng = new google.maps.LatLng( lat , lng );
   if (startId) {
+    // 前回の計測地点との距離を求める(m)
+    var dist = google.maps.geometry.spherical.computeDistanceBetween(old, latlng);
+    // 距離を少数第1位で四捨五入してからkmに変換
+    tdistance += Math.round(dist * 10) / 10 / 1000;
+    document.getElementById("tdist").innerText = tdistance + "km";
+
     // 信号待ちでの取得停止
-    // if (WatchPosition.count > 0){
-    //   var distance = google.maps.geometry.spherical.computeDistanceBetween(history[history.length-1], latlng); 
-    //   if (distance < 3.0) {
-    //     console.log("less than 3m");
-    //     return false; 
-    //   }
-    // }
+    if (WatchPosition.count > 0){
+      if (dist < 3.0) {
+        console.log("less than 3m");
+        return false; 
+      }
+    }
     /********************/
     draw(lat, lng);
     history.push(latlng);
-    // 前回の計測地点との距離を求める(km)
-    var dist = google.maps.geometry.spherical.computeDistanceBetween(old, latlng);
-    tdistance += Math.round(dist) / 1000;
-    document.getElementById("tdist").innerText = tdistance + "km";
 
     console.log(history.length);
   }

@@ -17,11 +17,6 @@ var idx;
 var auto_id = null
 var oldHeading = null;
 
-function init() {
-  var path = document.getElementById('path').value;
-  console.log(path);
-}
-
 function initialize()
 {
   encodedPath = document.getElementById('path').value;
@@ -102,37 +97,22 @@ function stop_timer() {
 }
 
 function update() {
+  WatchPosition.count++;
   var center = path[idx+1];
-  var heading = google.maps.geometry.spherical.computeHeading(path[idx], path[idx+1]);
-  heading = Math.round(heading / 10) * 10;
-  // if (oldHeading == null) {
-  //   oldHeading = heading;
-  // } else {
-  //   var diff = Math.abs(heading - Math.abs(oldHeading));
-  //   if (diff >= 180) {
-  //     console.log("1: " + heading);
-  //     var swap = heading;
-  //     heading = oldHeading;
-  //     oldHeading = swap;
-  //     // heading = oldHeading;
-  //   } 
-  //   else if (diff >= 30 && diff < 100) {
-  //     console.log("2: " + heading);
-  //     heading = heading - 20;
-  //   }
-  //   oldHeading = heading;
-  // }
-  var povopts = { heading: heading ,pitch:10, zoom:1 };
-  console.log(heading);
-  var distance = google.maps.geometry.spherical.computeDistanceBetween(path[idx], path[idx+1]);
-  console.log("distance = " + distance);
-  // if (distance > 20) {
-  //   return false;
-  // }
+
+  // カメラ方向の自動変更
+  if (WatchPosition.count < 5 || WatchPosition.count % 8 == 0) {
+    var heading = google.maps.geometry.spherical.computeHeading(path[idx], path[idx+1]);
+    heading = Math.round(heading / 10) * 10;
+    var povopts = { heading: heading ,pitch:10, zoom:1 };
+    console.log(heading);
+    WatchPosition.svp.setPov(povopts);
+    console.log(WatchPosition.count);
+  }
+
   // 地図の中心を変更
   WatchPosition.map.setCenter( center );
   WatchPosition.svp.setPosition( center );
-  WatchPosition.svp.setPov(povopts);
 
   // マーカーの場所を変更
   WatchPosition.marker.setPosition( center );
