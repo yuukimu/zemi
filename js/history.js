@@ -101,7 +101,7 @@ function update() {
   var center = path[idx+1];
 
   // カメラ方向の自動変更
-  if (WatchPosition.count < 5 || WatchPosition.count % 8 == 0) {
+  if (WatchPosition.count < 5 || WatchPosition.count % 4 == 0) {
     var heading = google.maps.geometry.spherical.computeHeading(path[idx], path[idx+1]);
     heading = Math.round(heading / 10) * 10;
     var povopts = { heading: heading ,pitch:10, zoom:1 };
