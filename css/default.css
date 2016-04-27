@@ -48,6 +48,8 @@ th, td {
     border-color : gray;
     padding : 4px;
     background-color : #ffffef;
+    text-align: center;
+    font-size: 20px;
 }
 
 th {

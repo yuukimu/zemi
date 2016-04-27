@@ -17,9 +17,10 @@
     
   // POSTされたパラメータを受け取る
   $path = $_POST["path"];
+  $dist = $_POST["distance"];
   $time = date("Y-m-d H:i:s");
   // クエリを送信する
-  $sql = "INSERT INTO history(path, date) VALUES('$path', '$time')";
+  $sql = "INSERT INTO history(path, distance, date) VALUES('$path', '$dist', '$time')";
   $result = mysql_query($sql, $connect) or die("クエリの送信に失敗しました。<br />SQL:".$sql);
     
   // MySQLへの接続を閉じる

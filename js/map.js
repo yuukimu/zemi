@@ -42,8 +42,10 @@ function successFunc( position )
     // 前回の計測地点との距離を求める(m)
     var dist = google.maps.geometry.spherical.computeDistanceBetween(old, latlng);
     // 距離を少数第1位で四捨五入してからkmに変換
-    tdistance += Math.round(dist * 10) / 10 / 1000;
-    document.getElementById("tdist").innerText = tdistance + "km";
+    // tdistance += Math.round(dist * 10) / 10 / 1000;
+    tdistance += Math.round(dist);
+    // tdistance = google.maps.geometry.spherical.computeLength(history);
+    document.getElementById("tdist").innerText = (tdistance / 1000) + "km";
 
     // 信号待ちでの取得停止
     if (WatchPosition.count > 0){
@@ -138,6 +140,17 @@ function stopRecord() {
     console.log("not started!");
   }
 }
+
+
+// データをPOSTで送信
+var postForm = function(url) {
+  var encodedPath = google.maps.geometry.encoding.encodePath(history);
+  var $form = $('<form/>', {'action': url, 'method': 'post'});
+  $form.append($('<input/>', {'type': 'hidden', 'name': 'path', 'value': encodedPath}));
+  $form.append($('<input/>', {'type': 'hidden', 'name': 'distance', 'value': tdistance}));
+  $form.appendTo(document.body);
+  $form.submit();
+};
 
 // 現在位置を取得する
 navigator.geolocation.watchPosition( successFunc , errorFunc , optionObj ) ;

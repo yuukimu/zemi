@@ -21,6 +21,7 @@ function initialize()
 {
   encodedPath = document.getElementById('path').value;
   path = google.maps.geometry.encoding.decodePath(encodedPath);
+  console.log(google.maps.geometry.spherical.computeLength(path));
   idx = 0;
   var center = path[0];
   // Google Mapsに書き出し

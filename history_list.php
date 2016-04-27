@@ -24,6 +24,13 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" type="text/css" href="./css/default.css">
   <link rel="stylesheet" type="text/css" href="./css/map.css">
+
+  <script type="text/javascript">
+    function changeStatus() {
+      var obj = document.getElementById("submit");
+      obj.disabled = "";
+    }
+  </script>
   <title>開発ゼミ</title>
 </head>
 <body>
@@ -39,13 +46,13 @@
       <?php 
         while ($row = mysql_fetch_assoc($result)) {
           print "<tr>";
-          print '<td><input type="radio" name="select" value="' . htmlspecialchars($row['date']). '"/></td>';
+          print '<td><input type="radio" name="select" onClick="changeStatus()" value="' . htmlspecialchars($row['date']). '"/></td>';
           print "<td>".$row['date']."</td>";
           print "</tr>";
         }
       ?>
     </table>
-    <p><input type="submit" value="決定"  class="submit_button" /></p>
+    <p><input type="submit" value="決定"  class="submit_button" id="submit" disabled /></p>
   </form>
   <hr>
 </body>
